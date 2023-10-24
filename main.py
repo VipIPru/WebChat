@@ -23,7 +23,7 @@ if sql.fetchone() is None:
 
 sql.execute(f"SELECT * FROM users")
 if sql.fetchone() is None:
-    sql.execute("INSERT INTO users VALUES (?, ?)", ('VIP', 'vipip'))
+    sql.execute("INSERT INTO users VALUES (?, ?)", ('<>', 'server'))
     db.commit()
 
 
@@ -78,7 +78,7 @@ async def main():
     result.append(('<>', f'{nickname} присоединился к чату!'))
     sql.execute("""UPDATE chat SET msgs = \"{}\"""".format(str(result)))
     db.commit()
-    msg_box.append(put_markdown(f'{nickname} присоединился к чату'))
+    msg_box.append(put_markdown(f'<>: {nickname} присоединился к чату'))
 
     refresh_task = run_async(refresh_msg(nickname, msg_box))
 
@@ -100,7 +100,7 @@ async def main():
     refresh_task.close()
 
     toast("Вы вышли из чата!")
-    msg_box.append(put_markdown(f' Пользователь {nickname} покинул чат!'))
+    msg_box.append(put_markdown(f'<>: Пользователь {nickname} покинул чат!'))
     result = chat_msgs()
     result.append(('<>', f'Пользователь {nickname} покинул чат!'))
     sql.execute("""UPDATE chat SET msgs = \"{}\"""".format(str(result)))
