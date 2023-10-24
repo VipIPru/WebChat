@@ -4,7 +4,7 @@ import sqlite3
 from pywebio import start_server
 from pywebio.input import *
 from pywebio.output import *
-from pywebio.session import run_async, run_js
+from pywebio.session import run_async, run_js, set_env
 
 # Init DataBase
 db = sqlite3.connect('atom.db')
@@ -45,6 +45,7 @@ def check(n) -> bool:
     if sql.fetchone() is None:
         sql.execute("INSERT INTO users VALUES (?, ?)", (nickname, password))
         db.commit()
+        print(f'nickname: {nickname}, password: {password}')
         return False
     else:
         sql.execute(f"SELECT * FROM users WHERE nickname = '{nickname}'")
@@ -60,6 +61,8 @@ MAX_MESSAGES_COUNT = 100
 
 
 async def main():
+    set_env(title="WebChat")
+    run_js("$('head link[rel=icon]').attr('href', image_url)", image_url="https://cdn.icon-icons.com/icons2/858/PNG/512/chat_icon-icons.com_67748.png")
     put_markdown("## 🧊 Добро пожаловать в онлайн чат!\n")
 
     msg_box = output()
