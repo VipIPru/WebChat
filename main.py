@@ -75,7 +75,7 @@ async def main():
     nickname = data["nickname"]
 
     result = chat_msgs()
-    result.append('<>', f'{nickname} присоединился к чату!')
+    result.append(('<>', f'{nickname} присоединился к чату!'))
     sql.execute("""UPDATE chat SET msgs = \"{}\"""".format(str(result)))
     db.commit()
     msg_box.append(put_markdown(f'{nickname} присоединился к чату'))
@@ -102,7 +102,7 @@ async def main():
     toast("Вы вышли из чата!")
     msg_box.append(put_markdown(f' Пользователь {nickname} покинул чат!'))
     result = chat_msgs()
-    result.append('<>', f'Пользователь {nickname} покинул чат!')
+    result.append(('<>', f'Пользователь {nickname} покинул чат!'))
     sql.execute("""UPDATE chat SET msgs = \"{}\"""".format(str(result)))
     db.commit()
 
