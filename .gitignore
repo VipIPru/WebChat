@@ -1,3 +1,4 @@
 atom.db
 testing/
 .idea/
+__pycache__/
