@@ -11,5 +11,9 @@
 > Needs python 3.5.2+
 
 You can install it via manual: <br>
-<code>apt update && apt upgrade -y && apt install -y openssl git python3 python3-pip</code><br>
-<code>git clone https://github.com/VipIPru/WebChat && cd WebChat && pip install -r requirements.txt && python main.py</code>
+```
+$ apt update && apt upgrade -y && apt install -y openssl git python3 python3-pip
+```
+```
+$ git clone https://github.com/VipIPru/WebChat && cd WebChat && pip install -r requirements.txt && python main.py
+```
